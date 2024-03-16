@@ -1,0 +1,16 @@
+_format_version: "2.1"
+
+services:
+  - name: test-service
+    host: test 
+    path: /
+    port: 8000
+    routes:
+      - name: test-routes
+        hosts: 
+          - test_api
+          - localhost
+        paths:
+          - /test/
+        strip_path: true
+  
