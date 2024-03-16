@@ -5,9 +5,9 @@ volumes:
 
 secrets:
   konga_user_seed:
-    file: ./kong/konga-users-seed.js
+    file: ./kong/seeds/konga-users-seed.js
   konga_kong_node_seed:
-    file: ./kong/konga-node-seed.js
+    file: ./kong/seeds/konga-node-seed.js
   
 networks:
   kong-net:
@@ -87,11 +87,13 @@ services:
       - "8444:8444"
 
   kong-setup:
-    image: alpine
+    image: python:3.10-alpine
     networks:
       - kong-net
     volumes:
       - ./kong/setup.sh:/setup.sh
+      - ./kong/services.yml:/services.yml
+      - ./kong/create_services.py:/create_services.py
     depends_on:
       - kong
     command: ["sh", "/setup.sh"]

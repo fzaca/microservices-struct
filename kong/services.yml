@@ -6,11 +6,8 @@ services:
     path: /
     port: 8000
     routes:
-      - name: test-routes
-        hosts: 
-          - test_api
-          - localhost
+      - name: test-route
         paths:
-          - /test/
-        strip_path: true
+          - /test
+        strip_path: false
   
