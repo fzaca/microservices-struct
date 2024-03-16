@@ -2,12 +2,12 @@ _format_version: "2.1"
 
 services:
   - name: test-service
-    host: test 
-    path: /
+    host: test-service
+    path: /api # Prefix api root
     port: 8000
     routes:
       - name: test-route
         paths:
           - /test
-        strip_path: false
+        strip_path: true
   

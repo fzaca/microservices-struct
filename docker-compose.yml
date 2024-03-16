@@ -134,14 +134,14 @@ services:
       - "1337:1337"
 
   #######################################
-  # Users service
+  # Test Service
   #######################################
-  # users-service-v1:
-  #   build: ./microservices/users-service/v1
-  #   container_name: users-service-v1
-  #   ports:
-  #     - '8002:8000'
-  #   depends_on:
-  #     - konga
-  #   networks:
-  #     - kong-net
+  test-service:
+    build: ./services/test-service
+    container_name: test-service
+    ports:
+      - '8002:8000'
+    depends_on:
+      - kong 
+    networks:
+      - kong-net

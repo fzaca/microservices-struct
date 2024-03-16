@@ -16,10 +16,10 @@ def create_service(name, host, path, port, routes):
             "--data",
             "name=" + name,
             "--data",
-            "url=http://" + host + ":" + str(port),
+            "url=http://" + host + ":" + str(port) + path,
         ],
-        stdout=subprocess.DEVNULL,
-        stderr=subprocess.DEVNULL,
+        # stdout=subprocess.DEVNULL,
+        # stderr=subprocess.DEVNULL,
     )
     print("=" * 40)
     print(f"Service '{name}' has been successfully created.")
@@ -34,10 +34,10 @@ def create_service(name, host, path, port, routes):
                 "-X",
                 "POST",
                 "http://kong:8001/services/" + name + "/routes",
-                "--data", 
+                "--data",
                 "name=" + route["name"],
                 "--data",
-                "strip_path=" + str(route["strip_path"]).lower()
+                "strip_path=" + str(route["strip_path"]).lower(),
             ]
             + sum(paths, []),
             stdout=subprocess.DEVNULL,
